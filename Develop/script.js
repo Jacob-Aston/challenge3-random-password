@@ -22,39 +22,39 @@ function generatePassword() {
   const numbers = { charSet: "1234567890", isUsed: false };
 
   // Prompts user to type password length
-  let charCount = Number(prompt("How long is your password?", "8-120 characters"));
+  let charCount = Number(prompt("Type your password length below?", "(8-120) characters"));
 
   // If password length is invalid it sents new prompt with more information
   while (charCount < 8 || charCount > 120) {
-    charCount = Number(prompt("Ivalid length... How long is your password?", "8-120"));
+    charCount = Number(prompt("That password length is invalid... Enter a password length between 8 and 120 characters.", "(8-120) characters"));
   }
 
   // Prompts to pick password criteria
-  if (confirm("Can contain lower case")) {
+  if (confirm("Can your password contain lower case?")) {
     lowerCase.isUsed = true;
   }
-  if (confirm("Can contain upper case")) {
+  if (confirm("Can your password contain upper case?")) {
     upperCase.isUsed = true;
   }
-  if (confirm("Can contain symbols")) {
+  if (confirm("Can your password contain symbols?")) {
     symbols.isUsed = true
   }
-  if (confirm("Can contain numbers")) {
+  if (confirm("Can your password contain numbers?")) {
     numbers.isUsed = true
   }
 
   // If no criteria selected issue new prompts
   while (!(lowerCase.isUsed || upperCase.isUsed || symbols.isUsed || numbers.isUsed)) {
-    if (confirm("(you must select at least one character type) Can contain lower case")) {
+    if (confirm("(you must select at least one character type: lower case, upper case, symbols, or numbers.)   Can your password contain lower case?")) {
       lowerCase.isUsed = true;
     }
-    if (confirm("(you must select at least one character type) Can contain upper case")) {
+    if (confirm("(you must select at least one character type: lower case, upper case, symbols, or numbers.)   Can your password contain upper case?")) {
       upperCase.isUsed = true;
     }
-    if (confirm("(you must select at least one character type) Can contain symbols")) {
+    if (confirm("(you must select at least one character type: lower case, upper case, symbols, or numbers.)   Can your password contain symbols?")) {
       symbols.isUsed = true;
     }
-    if (confirm("(you must select at least one character type) Can contain numbers")) {
+    if (confirm("(you must select at least one character type: lower case, upper case, symbols, or numbers.)   Can your password contain numbers?")) {
       numbers.isUsed = true;
     }
   }
