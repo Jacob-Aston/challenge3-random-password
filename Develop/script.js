@@ -47,10 +47,10 @@ function generatePassword() {
       upperCase.isUsed = true;
     }
     if (confirm("(you must select at least one character type) Can contain symbols")) {
-      symbols.isUsed = true
+      symbols.isUsed = true;
     }
     if (confirm("(you must select at least one character type) Can contain numbers")) {
-      numbers.isUsed = true
+      numbers.isUsed = true;
     }
   }
 
@@ -84,6 +84,15 @@ function generatePassword() {
       const value = numbers.charSet.at(index);
       password.push(value);
     };
+  }
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
   }
 
   return password.join("");
