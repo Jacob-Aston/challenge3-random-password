@@ -60,7 +60,7 @@ function generatePassword() {
     return Math.floor(Math.random() * max);
   }
 
-  while (password.length === charCount) {
+  while (password.length < charCount) {
     if (lowerCase.isUsed === true) {
       const index = getRandomInt(lowerCase.charSet.length);
       const value = lowerCase.charSet.at(index);
@@ -85,4 +85,6 @@ function generatePassword() {
       password.push(value);
     };
   }
+
+  return password.join("");
 }
