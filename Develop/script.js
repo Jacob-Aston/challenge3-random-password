@@ -13,19 +13,23 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// Generates a password based on chosen criteria.
 function generatePassword() {
 
-  const lowerCase = {charSet: "abcdefghijklmnopqrstuvwxyz", isUsed: false};
-  const upperCase = {charSet: "ABCDEFG", isUsed: false};
-  const symbols ={charSet: "!@#$%^&*", isUsed: false};
-  const numbers = {charSet: "1234567890", isUsed: false};
+  const lowerCase = { charSet: "abcdefghijklmnopqrstuvwxyz", isUsed: false };
+  const upperCase = { charSet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", isUsed: false };
+  const symbols = { charSet: "!@#$%^&*", isUsed: false };
+  const numbers = { charSet: "1234567890", isUsed: false };
 
-  let charCount = Number(prompt("How long is your password?", "8-120"));
-  
+  // Prompts user to type password length
+  let charCount = Number(prompt("How long is your password?", "8-120 characters"));
+
+  // If password length is invalid it sents new prompt with more information
   while (charCount < 8 || charCount > 120) {
-    charCount = Number(prompt("Incorrect length... How long is your password?", "8-120"));
+    charCount = Number(prompt("Ivalid length... How long is your password?", "8-120"));
   }
-  
+
+  // Prompts to pick password criteria
   if (confirm("Can contain lower case")) {
     lowerCase.isUsed = true;
   }
@@ -39,6 +43,7 @@ function generatePassword() {
     numbers.isUsed = true
   }
 
+  // If no criteria selected issue new prompts
   while (!(lowerCase.isUsed || upperCase.isUsed || symbols.isUsed || numbers.isUsed)) {
     if (confirm("(you must select at least one character type) Can contain lower case")) {
       lowerCase.isUsed = true;
@@ -54,12 +59,15 @@ function generatePassword() {
     }
   }
 
+  // Declares array to build password in
   let password = [];
-  
+
+  // Random number generator (source unknown)
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
+  // Assigns characters to password array one character type at a time
   while (password.length < charCount) {
     if (lowerCase.isUsed === true) {
       const index = getRandomInt(lowerCase.charSet.length);
@@ -86,6 +94,7 @@ function generatePassword() {
     };
   }
 
+  // Array shuffling algorithm to scramble mix up the password (source: https://dev.to/codebubb/how-to-shuffle-an-array-in-javascript-2ikj)
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -95,5 +104,6 @@ function generatePassword() {
     }
   }
 
+  // Returns the password array as a string to be displayed
   return password.join("");
 }
