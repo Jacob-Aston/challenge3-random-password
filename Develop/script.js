@@ -20,19 +20,38 @@ function generatePassword() {
   const symbols ={charSet: "!@#$%^&*", isUsed: false};
   const numbers = {charSet: "1234567890", isUsed: false};
 
-  let charCount = prompt("How long is your password?", "8-120")
-
-  if(confirm("Can contain lower case")) {
-lowerCase.isUsed = true;
+  let charCount = prompt("How long is your password?", "8-120");
+  
+  while (charCount < 8 || charCount > 120) {
+    prompt("Incorrect length... How long is your password?", "8-120");
   }
-  if(confirm("Can contain upper case")) {
+  
+  
+  if (confirm("Can contain lower case")) {
+    lowerCase.isUsed = true;
+  }
+  if (confirm("Can contain upper case")) {
     upperCase.isUsed = true;
   }
-  if(confirm("Can contain symbols")) {
+  if (confirm("Can contain symbols")) {
     symbols.isUsed = true
   }
-  if(confirm("Can contain numbers")) {
+  if (confirm("Can contain numbers")) {
     numbers.isUsed = true
+  }
+
+  while (!(lowerCase.isUsed || upperCase.isUsed || symbols.isUsed || numbers.isUsed)) {
+    if (confirm("(you must select at least one character type) Can contain lower case")) {
+      lowerCase.isUsed = true;
+    }
+    if (confirm("(you must select at least one character type) Can contain upper case")) {
+      upperCase.isUsed = true;
+    }
+    if (confirm("(you must select at least one character type) Can contain symbols")) {
+      symbols.isUsed = true
+    }
+    if (confirm("(you must select at least one character type) Can contain numbers")) {
+      numbers.isUsed = true
   }
 
 }
