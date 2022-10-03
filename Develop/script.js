@@ -60,27 +60,29 @@ function generatePassword() {
     return Math.floor(Math.random() * max);
   }
 
-  for (let i = 0; i < charCount;) {
+  while (password.length === charCount) {
     if (lowerCase.isUsed === true) {
       const index = getRandomInt(lowerCase.charSet.length);
       const value = lowerCase.charSet.at(index);
       password.push(value);
-      i++;
-      if (i < charCount) break;
+      if (password.length === charCount) break;
     };
     if (upperCase.isUsed === true) {
       const index = getRandomInt(upperCase.charSet.length);
       const value = upperCase.charSet.at(index);
       password.push(value);
+      if (password.length === charCount) break;
     };
     if (symbols.isUsed === true) {
       const index = getRandomInt(symbols.charSet.length);
       const value = symbols.charSet.at(index);
       password.push(value);
+      if (password.length === charCount) break;
     };
     if (numbers.isUsed === true) {
       const index = getRandomInt(numbers.charSet.length);
       const value = numbers.charSet.at(index);
       password.push(value);
     };
+  }
 }
